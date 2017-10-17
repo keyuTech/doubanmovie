@@ -5,6 +5,7 @@
   box-sizing: border-box;
 }
 a {
+  color: #000;
   text-decoration: none;
 }
 li {
@@ -16,11 +17,20 @@ html, body {
 }
 main {
   height: calc(100% - 50px);
-  background-color: blue;
+  background-color: #fff;
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch; /*ios 上增加弹性*/
+}
+section {
+  display: none;
+}
+section:first-child {
+  display: block;
 }
 footer {
   position: absolute;
   bottom: 0;
+  border-top: 1px solid #ccc;
   width: 100%;
   height: 50px;
 }
@@ -32,10 +42,41 @@ footer li {
   text-align: center;
   cursor: pointer;
 }
-span {
+footer span {
   display: block;
   padding-top: 5px;
 }
 li.active {
+  color: #ff5722;
+}
+.item {
+  border-bottom: 1px solid #ccc;
+}
+.item>a {
+  display: block;
+  display: flex;
+}
+.top250 .cover {
+  padding:10px;
+}
+.top250 .cover img {
+  height: 120px;
+}
+.detail {
+  flex: 1;
+  line-height: 1.2em;
+  padding-top: 10px;
+  padding-bottom:10px;
+}
+.detail h3 {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+.detail div {
+  color: #777;
+  padding-top: 5px;
+}
+.detail .score {
   color: #ff5722;
 }
