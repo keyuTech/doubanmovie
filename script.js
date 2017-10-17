@@ -5,7 +5,7 @@ $('footer li').click(function(){
 })
 
 $.ajax({
-  url: 'http://api.douban.com/v2/movie/top250',
+  url: 'https://api.douban.com/v2/movie/top250',
   type: 'GET',
   data: {
     start: 0,
@@ -22,30 +22,29 @@ $.ajax({
 function createNode(data){
   data.subjects.forEach(function(movie){
     var template = `<div class="item">
-    <a href="#">
-    <div class="cover">
-    <img src="" alt="">
-        </div>
-    <div class="detail">
-    <h2></h2>
-    <div class="extra"><span class="score"></span>分 / <span class="collect"></span>收藏</div>
-    <div class="extra"><span class="year"></span> / <span class="type"></span></div>
-    <div class="extra">导演: <span class="director"></span></div>
-    <div class="extra">主演: <span class="actor"></span></div>
-  </div>
-  </a>
-  </div>`
-    console.log(template)
+        <a href="#">
+          <div class="cover">
+            <img src="https://img3.doubanio.com/view/movie_poster_cover/lpst/public/p480747492.webp" alt="cover">
+          </div>
+          <div class="detail">
+            <h3></h3>
+            <div><span class="score"></span>分 / <span class="collect"></span>收藏</div>
+            <div><span class="year"></span> / <span class="type"></span></div>
+            <div>导演：<span class="director"></span></div>
+            <div>主演：<span class="actor"></span></div>
+          </div>
+        </a>
+      </div>`
   var $node = $(template)
-  $node.find('.cover img').attr('src', movie.images.src)
+  $node.find('.cover img').attr('src', movie.images.medium)
   $node.find('.detail h3').text(movie.title)
   $node.find('.detail .score').text(movie.rating.average)
   $node.find('.detail .collect').text(movie.collect_count)
   $node.find('.detail .year').text(movie.year)
   $node.find('.detail .type').text(movie.genres.join(' / '))
-  $node.find('.detail .directoe').text(function(){
+  $node.find('.detail .director').text(function(){
       var dirArr = []
-      movie.director.forEach(function(dir){
+      movie.directors.forEach(function(dir){
         dirArr.push(dir.name)
       })
       return dirArr.join(' / ')
@@ -57,6 +56,6 @@ function createNode(data){
       })
       return actorArr.join(' / ')
     })
-  })
   $('section').eq(0).append($node)
+  })
 }
