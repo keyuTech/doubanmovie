@@ -84,6 +84,7 @@ function createNode(data){
         </a>
       </div>`
   var $node = $(template)
+  $node.find('a').attr('href', movie.alt)
   $node.find('.cover img').attr('src', movie.images.medium)
   $node.find('.detail h3').text(movie.title)
   $node.find('.detail .score').text(movie.rating.average)
