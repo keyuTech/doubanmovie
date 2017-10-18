@@ -81,3 +81,16 @@ li.active {
 .detail .score {
   color: #ff5722;
 }
+.loading {
+  text-align: center;
+  padding: 5px;
+  display: none;
+}
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg);  }
+}
+.loading .iconfont{
+  display: inline-block;
+  animation: 1s rotate linear infinite;
+}
