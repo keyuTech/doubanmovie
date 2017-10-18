@@ -94,3 +94,27 @@ li.active {
   display: inline-block;
   animation: 1s rotate linear infinite;
 }
+.search>div {
+  border-bottom: 1px solid #fff;
+}
+.search form {
+  display: flex;
+  margin: 10px;
+}
+.search .searchContent {
+  flex: 1;
+  height: 25px;
+  padding: 5px;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  margin-right: 20px;
+  background-color: #eee;
+}
+.search .searchButton {
+  color: #fff;
+  height: 25px;
+  padding: 5px 20px;
+  border: 1px solid #ff5722;
+  border-radius: 5px;
+  background-color: #ff5722;
+}
