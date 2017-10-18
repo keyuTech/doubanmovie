@@ -161,6 +161,7 @@ var handler = {
 var top250 = {
   init: function(){
     this.$container = $('.top250')
+    this.$viewport = $('main')
     this.index = 0
     this.isFinish = false
     this.start()
@@ -174,6 +175,8 @@ var top250 = {
   },
   event: function(){
     var me = this
+    console.log(me.isFinish)
+    console.log(me.isToEnd)
     if(!me.isFinish && me.isToEnd){
       me.start()
     }
@@ -196,6 +199,7 @@ var top250 = {
       }).done(function(ret){
         console.log(ret)
         me.index+=20
+        console.log(me.index)
         if(me.index >= ret.total){
           me.isFinish = true
         }
@@ -213,7 +217,7 @@ var top250 = {
   },
   isToEnd: function(){
     var me = this
-    return me.$container.find('#top250').height() - 20 <= me.$container.height() + me.$container.scrollTop
+    return me.$container.height() - 20 <= me.$viewport.height() + me.$viewport.scrollTop()
   }
 }
 
@@ -238,3 +242,19 @@ var app = {
   
 }
 app.init()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
