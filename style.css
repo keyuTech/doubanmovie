@@ -18,7 +18,8 @@ html, body {
 main {
   height: calc(100% - 50px);
   background-color: #fff;
-  overflow: scroll;
+  overflow-x: auto;
+  overflow-y: scroll;
   -webkit-overflow-scrolling: touch; /*ios 上增加弹性*/
 }
 section {
