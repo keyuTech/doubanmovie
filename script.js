@@ -163,8 +163,10 @@ var top250 = {
     this.$container = $('.top250')
     this.$viewport = $('main')
     this.index = 0
+    this.isLoading = false
     this.isFinish = false
     this.start()
+    this.event()
     this.timer
   },
   start: function(){
@@ -175,11 +177,12 @@ var top250 = {
   },
   event: function(){
     var me = this
-    console.log(me.isFinish)
-    console.log(me.isToEnd)
-    if(!me.isFinish && me.isToEnd){
-      me.start()
-    }
+    me.start()
+    me.$viewport.scroll(function(){
+      if(!me.isFinish && (me.$container.height() <= me.$viewport.height() + me.$viewport.scrollTop() + 20)){
+        me.start()
+      }
+    })
   },
   getData: function(callback){
     var me = this
@@ -199,7 +202,6 @@ var top250 = {
       }).done(function(ret){
         console.log(ret)
         me.index+=20
-        console.log(me.index)
         if(me.index >= ret.total){
           me.isFinish = true
         }
@@ -214,10 +216,6 @@ var top250 = {
     data.subjects.forEach(function(movie){
       me.$container.find('#top250').append(handler.createNode(movie))
     })
-  },
-  isToEnd: function(){
-    var me = this
-    return me.$container.height() - 20 <= me.$viewport.height() + me.$viewport.scrollTop()
   }
 }
 
@@ -236,7 +234,7 @@ var app = {
     var me = this
     this.$tabs.on('click', function(){
       $(this).addClass('active').siblings().removeClass('active')
-      me.$panels.eq($(this).index()).fadeIn.siblings().hide()
+      me.$panels.hide().eq($(this).index()).fadeIn()
     })
   }
   
