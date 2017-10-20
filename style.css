@@ -56,10 +56,10 @@ li.active {
   display: block;
   display: flex;
 }
-.top250 .cover {
+.cover {
   padding:10px;
 }
-.top250 .cover img {
+.cover img {
   height: 120px;
 }
 .detail {
