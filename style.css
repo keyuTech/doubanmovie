@@ -94,7 +94,7 @@ li.active {
   animation: 1s rotate linear infinite;
 }
 .search>div {
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid #ccc;
 }
 .search form {
   display: flex;
