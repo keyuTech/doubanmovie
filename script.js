@@ -220,6 +220,99 @@ var top250 = {
 }
 
 
+var us = {
+  init: function(){
+    this.$container = $('.us')
+    this.start()
+    this.timer
+  },
+  start: function(){
+    var me = this
+    this.getData(function(data){
+      me.render(data)
+    })
+  },
+  getData: function(callback){
+    var me = this
+    if(me.timer){
+      clearTimeout(me.timer)
+    }
+    me.timer = setTimeout(function(){
+      me.$container.find('.loading').show()
+      $.ajax({
+        url: 'https://api.douban.com/v2/movie/us_box',
+        type: 'GET',
+        dataType: 'jsonp'
+      }).done(function(ret){
+        console.log(ret)
+        callback&&callback(ret)
+      }).fail(function(){
+        console.log('error')
+      })
+    }, 500)
+  },
+  render: function(data){
+     var me = this
+    data.subjects.forEach(function(movie){
+      me.$container.find('#us').append(handler.createNode(movie.subject))
+    })
+  }
+}
+
+
+var search = {
+  init: function(){
+    this.$container = $('.search')
+    this.$btn = $('.search .searchButton')
+    this.$content = $('.search .searchContent')
+    this.event()
+    this.getData()
+  },
+  start: function(){
+    var me = this
+    this.getData(function(data){
+      me.render(data)
+    })
+  },
+  event: function(){
+    var me = this
+    this.$btn.on('click', function(){
+      me.getData(me.$content.val(), function(data){
+        console.log(me.$content.val())
+        me.render(data)
+      })
+    })
+  },
+  getData :function(keyword,callback){
+    var me = this
+    if(me.timer){
+      clearTimeout(me.timer)
+    }
+    me.timer = setTimeout(function(){
+      me.$container.find('.loading').show()
+      $.ajax({
+        url: 'https://api.douban.com/v2/movie/search',
+        type: 'GET',
+        data: {
+          q: keyword
+        },
+        dataType: 'jsonp'
+      }).done(function(ret){
+        console.log(ret)
+        callback&&callback(ret)
+      }).fail(function(){
+        console.log('error')
+      })
+    }, 500)
+  },
+  render: function(data){
+    var me = this
+    data.subjects.forEach(function(movie){
+      me.$container.find('.result').append(handler.createNode(movie))
+    })
+  }
+}
+
 
 
 
@@ -229,6 +322,8 @@ var app = {
     this.$panels = $('section')
     this.event()
     top250.init()
+    us.init()
+    search.init()
   },
   event: function(){
     var me = this
