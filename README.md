@@ -9,6 +9,7 @@ by @wky0615
 4. 页面上所展示的电影条目都可以通过点击跳转到豆瓣电影的详细介绍
 ### 二、设计思路
 页面主要分为两大部分：展示部分以及底部的可点击切换（footer）部分，其中展示部分分为三个section，分别展示Top250、北美排行以及搜索电影，在用户点击底部（footer）部分的不同部分时会切换到相应的页面。  
+<img src="https://raw.githubusercontent.com/wky0615/MarkdownPhotos/master/doubanmovie/%E9%A1%B5%E9%9D%A2.png" width="50%">   
 ![页面](https://raw.githubusercontent.com/wky0615/MarkdownPhotos/master/doubanmovie/%E9%A1%B5%E9%9D%A2.png)   
 首先，要实现点击footer部分的各个icon实现section的切换，通过绑定'click'事件可以轻松实现。  
 其次，要实现Top250部分功能，通过AJAX获取豆瓣电影API提供的数据，获取数据后利用jQuery操作DOM将数据拼接后在页面上展示，需要注意的是250条数据并非一次性全部加载完成，考虑到流畅性，每次请求获取的信息条目为20条。  
