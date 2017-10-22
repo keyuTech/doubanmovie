@@ -19,5 +19,15 @@ by @wky0615
 随后，实现北美电影排行的展示与Top250部分思路及方法大同小异，只不过由于提供的电影条目数据不多，请求数据时一次性获取全部条目。  
 最后，实现搜索电影功能，此部分需要将用户在 ``` <input> ```标签中输入的内容作为AJAX请求中的data传递，随后将获取的数据拼接后放置在页面上。 
 ### 三、效果演示
-移动端请扫描下方二维码
+移动端请扫描下方二维码   
 ![](https://raw.githubusercontent.com/wky0615/MarkdownPhotos/master/doubanmovie/%E4%BA%8C%E7%BB%B4%E7%A0%81.png)
+### 四、实现流程
+<div align="center">
+  <img src="https://raw.githubusercontent.com/wky0615/MarkdownPhotos/master/doubanmovie/top250%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
+</div>    
+<div align="center">
+  <img src="https://raw.githubusercontent.com/wky0615/MarkdownPhotos/master/doubanmovie/%E5%8C%97%E7%BE%8E%E6%8E%92%E8%A1%8C%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
+</div>    
+<div align="center">
+  <img src="https://raw.githubusercontent.com/wky0615/MarkdownPhotos/master/doubanmovie/search%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
+</div>    
