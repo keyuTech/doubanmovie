@@ -38,4 +38,34 @@ by @wky0615
   <img src="https://raw.githubusercontent.com/wky0615/MarkdownPhotos/master/doubanmovie/search%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
 </div>    
 
-### 六、
+### 六、问题及解决
+##### 判断页面滚动到底部、页面滚动到底部多次触发发送请求的问题
+在Top250功能中，一次发送请求获得20条数据，无法在视窗一次性完全展示，必然会出现滚动条，在用户滚动到最底部时，触发下一次请求并展示加载动画。
+* 判断页面滚动到底部的方法：通过比较页面此时的高度和视窗高度+视窗滚动的高度判断页面是否到达底部，即使用 ``` .height() ``` 方法获得页面和视窗的高度，使用 ``` .scrollTop() ``` 获得视窗滚动的高度```$('section').eq(0).height() - 20 <= $('main').scrollTop() + $('main').height()```。本项目中留出20px的冗余。
+* 在判断页面是否滚动到底部时留出了20px的冗余，在用户继续滚动的情况下，会出现多次触发发送请求的情况，解决这个问题有两种方法，一：函数节流，在发送请求的函数之外添加一个定时器，使得请求在固定的延时之后再发送。
+```
+function loadData(){
+  if(timer){
+    clearTimeout(timer)
+  }
+  timer = setTimeout(function(){
+    $('.loading').show()
+    $.ajax({
+    url: 'https://api.douban.com/v2/movie/top250',
+    type: 'GET',
+    data: {
+      start: index,
+      count: 20
+    },
+    dataType: 'jsonp'
+  }).done(function(ret){
+    console.log(ret)
+    createNode(ret)
+    index+=20
+    console.log(index)
+    }).fail(function(){
+    console.log('error')
+    })
+  }, 500)
+}
+```
